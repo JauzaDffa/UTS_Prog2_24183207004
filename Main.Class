@@ -1,0 +1,68 @@
+import java.util.Scanner; //scanner untuk input
+import java.util.ArrayList;//array untuk menyimpan data
+
+
+public class MainClass {
+    static ArrayList<buku> DataBase = new ArrayList<>(); 
+    // global variabel dari array list
+    // untuk simpan data baru
+    
+    
+    public static void main(String[] args){
+       opsi_awal();
+    }
+    
+    public static void opsi_awal(){ //mengarahkan pengguna ke-metod tertentu
+        Scanner scan = new Scanner(System.in); //membuat scanen baru
+        
+        System.out.println("Next");
+        System.out.println("1 Menambah Data");
+        System.out.println("2 Menampilkan semua data");
+        System.out.println("3 Keluar Program");
+        String opsi=scan.nextLine(); //pilihan opsi
+        
+        if(opsi.equals("1")) { //opsi 1"tambah data"
+            tambahdata();
+        }
+        if (opsi.equals("2")) { //opsi 2"tampil semua data"
+            tampilsemuadata();
+        }
+        else {                  //opsi 3"keluar"
+            keluarprogram();
+        }
+    }
+    
+    public static void tambahdata(){ //tambah data
+        Scanner scan = new Scanner(System.in); //membuat scanenr baru
+        
+        System.out.println("Masukkan judul:");
+        String judul_buku=scan.nextLine(); //pengguna mengisi
+        
+        System.out.println("Masukkan penulis:");
+        String penulis_buku=scan.nextLine(); //pengguna mengisi
+        
+        System.out.println("Masukkan tahun:");
+        String tahun_terbit_buku=scan.nextLine(); //pengguna mengisi
+        
+        buku book = new buku(); //membuat objek baru
+        book.setJudul(judul_buku); //mengisi judul sesuai input
+        book.setPenulis(penulis_buku); //mengisi penulis sesuai input
+        book.setTahun_terbit(tahun_terbit_buku); //mengisi tahun  sesuai input
+        book.tampil(); // menampilakan data yang baru di isi
+        DataBase.add(book); //menambah objek baru ke array
+     
+        opsi_awal();
+    }
+
+    public static void tampilsemuadata(){ //menampilkan semua data di array
+        for (int i = 0; i < DataBase.size(); i++) { //untuk objek didalam array akan menampilakan data
+            DataBase.get(i).tampil();
+        }
+        opsi_awal();
+    }
+    
+    public static void keluarprogram(){ // keluar program
+        System.out.println("Trimakasih");
+    }
+    
+}
